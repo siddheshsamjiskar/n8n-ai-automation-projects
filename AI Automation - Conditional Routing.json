@@ -1,0 +1,186 @@
+{
+  "name": "AI Automation - Conditional Routing",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "30693aa8-2bec-4e34-8ec0-72ece254838a",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "00b3cba4-b953-47e1-bfdf-2cea6dd0810c",
+              "name": "name",
+              "value": "Siddhesh",
+              "type": "string"
+            },
+            {
+              "id": "d2b3b0a5-98c0-4f18-8aaf-e62539c30db1",
+              "name": "skill",
+              "value": "AI Automation",
+              "type": "string"
+            },
+            {
+              "id": "13e49975-6411-43e1-a622-0b0830182ea5",
+              "name": "level",
+              "value": "advanced",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "3116f3f2-5ab7-4265-9cb3-9abace86399b",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4214d7ab-6dbd-48c7-a2dd-e4592fea4e49",
+              "leftValue": "={{ $json.level }}",
+              "rightValue": "beginner",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        416,
+        0
+      ],
+      "id": "1992b9ca-408f-4c13-ab4a-65bc4b0257d9",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1fa539c4-73d1-49f4-acf4-9b163ae405ac",
+              "name": "message",
+              "value": "beginner level detected",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        672,
+        -80
+      ],
+      "id": "9c956a96-195e-4e3f-abbf-82c66b79816f",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c8449390-0eaa-4e29-acb2-4d7402e89785",
+              "name": "message",
+              "value": "advanced level detected",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        672,
+        96
+      ],
+      "id": "4766cdd0-d4b6-4075-82a4-dcfed6c85183",
+      "name": "Edit Fields2"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "583a65b9-1ac1-49f8-88ab-431b4c939d2b",
+  "meta": {
+    "instanceId": "5a7bf22fe4386bd581c4813b4d4855cca39c6893417cfcbd45740415c11fab6d"
+  },
+  "nodeGroups": [],
+  "id": "jcVzjMkjcWiXwmp8",
+  "tags": []
+}
